@@ -90,16 +90,15 @@ class App extends Component {
           fetch("http://localhost:3000/image", {
             method: "PUT",
             headers: { "Content-Type": "application/json" },
-            body: {
-              id: JSON.stringify({
-                id: this.state.user.id
-              })
-            }
+            body: JSON.stringify({
+              id: this.state.user.id
+            })
           })
             .then(res => res.json())
             .then(count =>
               this.setState(Object.assign(this.state.user, { entries: count }))
-            );
+            )
+            .catch(err => console.log(err, "hello"));
         }
         this.displayFaceBox(this.calculateFaceLocation(response));
       })
